@@ -38,7 +38,7 @@
 熟悉基本的git命令行操作命令，从github上
 的 http://www.github.com/chyyuu/ucore_lab 下载
 ucore lab实验
->使用git clone http://www.github.com/chyyuu/ucore_lab即可。
+>使用git clone http://www.github.com/chyyuu/ucore_lab 即可。
 
 尝试用qemu+gdb（or ECLIPSE-CDT）调试lab1
 - [x]   
