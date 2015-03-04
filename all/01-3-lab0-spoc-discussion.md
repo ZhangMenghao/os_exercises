@@ -35,32 +35,10 @@
 搭建好实验环境，请描述碰到的困难和解决的过程。
 >我的电脑无法进行virtual box和虚拟机的安装，后来我自己只好自己在ubuntu系统下进行了环境配置。
 
-熟悉基本的git命令，从github上（http://www.github.com/chyyuu/ucore_lab）下载ucore lab实验
->使用git clone http://www.github.com/chyyuu/ucore_lab即可。
-
-尝试用qemu+gdb（or ECLIPSE-CDT）调试lab1
->已经尝试。
-
-如何实现能响应除零错误异常的异常服务例程的lab0？
->对实验不太了解。
-
----
-
-## 小组讨论题
-
----
-
-搭建好实验环境，请描述碰到的困难和解决的过程。
-- [x]  
-
-> 
-
 熟悉基本的git命令行操作命令，从github上
 的 http://www.github.com/chyyuu/ucore_lab 下载
 ucore lab实验
-- [x]  
-
-> 
+>使用git clone http://www.github.com/chyyuu/ucore_lab即可。
 
 尝试用qemu+gdb（or ECLIPSE-CDT）调试lab1
 - [x]   
