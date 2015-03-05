@@ -87,7 +87,7 @@ SETGATE(intr, 0,1,2,3);
 ```
 请问执行上述指令后， intr的值是多少？
 
->2345
+>65538
 
 请分析 [list.h](https://github.com/chyyuu/ucore_lab/blob/master/labcodes/lab2/libs/list.h)内容中大致的含义，并能include这个文件，利用其结构和功能编写一个数据结构链表操作的小C程序
 >大致含义就是对与自己定义的一个list_entry进行的一系列操作，包括初始化(init)，添加(add)，在特定元素前面添加(add_before)，在特定元素后面添加(add_after)，删除(del)，删除并初始化(del_init)，清空(empty)，链表下一个(next)，前缀(prev)等。
