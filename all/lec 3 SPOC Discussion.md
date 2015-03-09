@@ -32,6 +32,28 @@
   - 答案对上述两个要点进行了正确阐述（2分）
   - 答案除了对上述两个要点都进行了正确阐述外，还进行了扩展和更丰富的说明（3分）
  ```
+>主要有进程控制，文件读写操作，文件系统操作，系统控制，内存管理，网络，Socket 套接字等。  
+进程控制有：  
+fork 创建一个新进程  
+clone 按指定条件创建子进程  
+execve 运行可执行文件  
+exit 中止进程  
+_exit 立即中止当前进程  
+getdtablesize 进程所能打开的最大文件数  
+getpgid 获取指定进程组标识号   
+setpgid 设置指定进程组标志号  
+文件读写操作有：  
+fcntl 文件控制  
+open 打开文件  
+creat 创建新文件  
+close 关闭文件描述字  
+read 读文件  
+文件系统操作有：  
+access 确定文件的可存取性  
+chdir 改变当前工作目录  
+fchdir 参见chdir  
+chmod 改变文件方式  
+fchmod 参见chmod  
  
  1. 以ucore lab8的answer为例，uCore的系统调用有哪些？大致的功能分类有哪些？(w2l1)
  
