@@ -108,7 +108,7 @@ fchmod 参见chmod
   - 答案除了对上述两个要点都进行了正确阐述外，还进行了扩展和更丰富的说明（3分）
  ```
 >在ucore_lab-master/labcodes_answer/lab8_result/kern/syscall里面，打开syscall.c文件，可以看到二十二个系统调用的函数，主要分为：  
->进程调度：kill，wait，exec等操作 ：read，write读写内存等操作       
+>进程调度：       
 >* [SYS_exit]                sys_exit,
 >* [SYS_fork]              sys_fork,
 >* [SYS_wait]              sys_wait,
