@@ -76,7 +76,7 @@
   - 答案除了对上述两个要点都进行了正确阐述外，还进行了扩展和更丰富的说明（3分）
  ```
 >主要有进程控制，文件读写操作，文件系统操作，系统控制，内存管理，网络，Socket 套接字，用户管理，进程间通信，sigaction 设置对指定信号的处理方法，消息，管道，信号量，共享内存等。  
-* 进程控制有：  
+* 进程控制主要用于控制计算机的进程，主要有：  
 fork 创建一个新进程  
 clone 按指定条件创建子进程  
 execve 运行可执行文件  
@@ -85,13 +85,13 @@ _exit 立即中止当前进程
 getdtablesize 进程所能打开的最大文件数  
 getpgid 获取指定进程组标识号   
 setpgid 设置指定进程组标志号  
-* 文件读写操作有：  
+* 文件读写操作，主要用于文件读写，主要有：  
 fcntl 文件控制  
 open 打开文件  
 creat 创建新文件  
 close 关闭文件描述字  
 read 读文件  
-* 文件系统操作有：  
+* 文件系统操作，主要用于文件的相关操作，主要有：  
 access 确定文件的可存取性  
 chdir 改变当前工作目录  
 fchdir 参见chdir  
@@ -107,6 +107,34 @@ fchmod 参见chmod
   - 答案对上述两个要点进行了正确阐述（2分）
   - 答案除了对上述两个要点都进行了正确阐述外，还进行了扩展和更丰富的说明（3分）
  ```
+>在ucore_lab-master/labcodes_answer/lab8_result/kern/syscall里面，打开syscall.c文件，可以看到二十二个系统调用的函数，主要分为：  
+>进程调度：kill，wait，exec等操作 ：read，write读写内存等操作       
+>* [SYS_exit]                sys_exit,
+>* [SYS_fork]              sys_fork,
+>* [SYS_wait]              sys_wait,
+>* [SYS_exec]              sys_exec,
+>* [SYS_yield]             sys_yield,
+>* [SYS_kill]              sys_kill,
+>
+>文件操作：
+>* [SYS_getpid]            sys_getpid,
+>* [SYS_putc]              sys_putc,
+>* [SYS_pgdir]             sys_pgdir,
+>* [SYS_gettime]           sys_gettime,
+>* [SYS_lab6_set_priority] sys_lab6_set_priority,
+>* [SYS_sleep]             sys_sleep,
+>* [SYS_open]              sys_open,
+>* [SYS_close]             sys_close,
+>
+>内存管理:
+>* [SYS_read]              sys_read,
+>* [SYS_write]             sys_write,
+>* [SYS_seek]              sys_seek,
+>* [SYS_fstat]             sys_fstat,
+>* [SYS_fsync]             sys_fsync,
+>* [SYS_getcwd]            sys_getcwd,
+>* [SYS_getdirentry]       sys_getdirentry,
+>* [SYS_dup]               sys_dup,
  
 ## 3.4 linux系统调用分析
  1. 通过分析[lab1_ex0](https://github.com/chyyuu/ucore_lab/blob/master/related_info/lab1/lab1-ex0.md)了解Linux应用的系统调用编写和含义。(w2l1)
