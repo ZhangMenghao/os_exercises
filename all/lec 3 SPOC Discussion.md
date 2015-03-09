@@ -118,9 +118,9 @@ fchmod 参见chmod
 >* [SYS_gettime]           sys_gettime,
 >* [SYS_lab6_set_priority] sys_lab6_set_priority,
 >* [SYS_sleep]             sys_sleep,
+>* [SYS_getpid]            sys_getpid,
 >
 >文件操作：
->* [SYS_getpid]            sys_getpid,
 >* [SYS_putc]              sys_putc,
 >* [SYS_pgdir]             sys_pgdir,
 >* [SYS_open]              sys_open,
@@ -183,12 +183,36 @@ fchmod 参见chmod
   - 答案对上述两个要点进行了正确阐述（2分）
   - 答案除了对上述两个要点都进行了正确阐述外，还进行了扩展和更丰富的说明（3分）
  ```
->strace常用来跟踪进程执行时的系统调用和所接收的信号,strace可以跟踪到一个进程产生的系统调用,包括参数，返回值，执行消耗的时间。
+>strace常用来跟踪进程执行时的系统调用和所接收的信号。在Linux世界，进程不能直接访问硬件设备，当进程需要访问硬件设备(比如读取磁盘文件，接收网络数据等等)时，必须由用户态模式切换至内核态模式，通过系统调用访问硬件设备。strace可以跟踪到一个进程产生的系统调用,包括参数，返回值，执行消耗的时间。
+通过运行程序，我们大概可以得到这样的过程：Linux内核会先进行若干检查，接着将数据复制进缓冲区。稍后，内核会在后台收集所有“脏”(有数据写入)缓冲区(内容跟相应磁盘块不同的所有缓冲区)，将它们安排成最佳顺序，接着写进磁盘。read函数从打开的设备或文件中读取数据,close关闭文件,execve运行可执行文件,arch-prctil设置架构特定的线程状态,这样就完成了系统调用的过程。
  
 ## 3.5 ucore系统调用分析
  1. ucore的系统调用中参数传递代码分析。
  1. ucore的系统调用中返回结果的传递代码分析。
  1. 以ucore lab8的answer为例，分析ucore 应用的系统调用编写和含义。
+>* sys_exit:引发一个系统退出的异常 
+>* sys_fork:创造一个新进程 
+>* sys_wait：一个进程进行等待 
+>* sys_exec：程序运行 
+>* sys_yield：调用一个处理调用的内核函数 
+>* sys_kill：用于挂断一个进程 
+>* sys_getpid：用来返回当前进程的id 
+>* sys_putc：有关tcpip协议 
+>* sys_pgdir：显示页面的目录 
+>* sys_gettime：获得当前时间 
+>* sys_lab6_set_priority：调整lab6的优先级权限 
+>* sys_sleep：线程休眠状态 
+>* sys_open：打开文件 
+>* sys_close：关闭文件 
+>* sys_read：读取文件 
+>* sys_write：写文件 
+>* sys_seek：返回当前文件当下的读写位置 
+>* sys_fstat：和read，write类似 
+>* sys_fsync：将缓存区域的数据写入指定的设备 
+>* sys_getcwd：获取当前的工作目录 
+>* sys_getdirentry：获取文件目录 
+>* sys_dup：用来“复制”一个打开的文件号，使两个文件号都指向同一个文件
+
  1. 以ucore lab8的answer为例，尝试修改并运行代码，分析ucore应用的系统调用执行过程。
  
 ## 3.6 请分析函数调用和系统调用的区别
