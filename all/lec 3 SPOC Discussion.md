@@ -17,6 +17,7 @@
 * 开机映像文件将包含 kernel loader 及压缩过的 kernel，此 kernel 将支持NTFS root
 系统。
 * 远程客户端根据下载的文件启动机器。
+>
 
 ## 3.2 系统启动流程
  1. 了解NTLDR的启动流程。
@@ -30,8 +31,19 @@
 （8）NTLDR装载所选操作系统  
 
  1. 了解GRUB的启动流程。
+>
+
  1. 比较NTLDR和GRUB的功能有差异。
+>ntldr功能很少，只能引导win，只能装在硬盘；grub是第三方操作系统引导器，可以引导硬盘，光盘，网络，U盘，winxp，winpe，win7，linux，dos等
+
  1. 了解u-boot的功能。
+>
+* 系统引导支持NFS挂载、RAMDISK(压缩或非压缩)形式的根文件系统；支持NFS挂载、从FLASH中引导压缩或非压缩系统内核；
+* 基本辅助功能强大的操作系统接口功能；可灵活设置、传递多个关键参数给操作系统，适合系统在不同开发阶段的调试要求与产品发布，尤以Linux支持最为强劲；支持目标板环境参数多种存储方式，如FLASH、NVRAM、EEPROM；
+* CRC32校验可校验FLASH中内核、RAMDISK镜像文件是否完好；
+* 设备驱动串口、SDRAM、FLASH、以太网、LCD、NVRAM、EEPROM、键盘、USB、PCMCIA、PCI、RTC等驱动支持；
+* 上电自检功能SDRAM、FLASH大小自动检测；SDRAM故障检测；CPU型号；
+* 特殊功能XIP内核引导；
 
 ## 3.3 中断、异常和系统调用比较
  1. 举例说明Linux中有哪些中断，哪些异常？
