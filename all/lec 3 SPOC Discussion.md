@@ -115,18 +115,16 @@ fchmod 参见chmod
 >* [SYS_exec]              sys_exec,
 >* [SYS_yield]             sys_yield,
 >* [SYS_kill]              sys_kill,
+>* [SYS_gettime]           sys_gettime,
+>* [SYS_lab6_set_priority] sys_lab6_set_priority,
+>* [SYS_sleep]             sys_sleep,
 >
 >文件操作：
 >* [SYS_getpid]            sys_getpid,
 >* [SYS_putc]              sys_putc,
 >* [SYS_pgdir]             sys_pgdir,
->* [SYS_gettime]           sys_gettime,
->* [SYS_lab6_set_priority] sys_lab6_set_priority,
->* [SYS_sleep]             sys_sleep,
 >* [SYS_open]              sys_open,
 >* [SYS_close]             sys_close,
->
->内存管理:
 >* [SYS_read]              sys_read,
 >* [SYS_write]             sys_write,
 >* [SYS_seek]              sys_seek,
@@ -138,16 +136,42 @@ fchmod 参见chmod
  
 ## 3.4 linux系统调用分析
  1. 通过分析[lab1_ex0](https://github.com/chyyuu/ucore_lab/blob/master/related_info/lab1/lab1-ex0.md)了解Linux应用的系统调用编写和含义。(w2l1)
- 
-
  ```
   + 采分点：说明了objdump，nm，file的大致用途，说明了系统调用的具体含义
   - 答案没有涉及上述两个要点；（0分）
   - 答案对上述两个要点中的某一个要点进行了正确阐述（1分）
   - 答案对上述两个要点进行了正确阐述（2分）
   - 答案除了对上述两个要点都进行了正确阐述外，还进行了扩展和更丰富的说明（3分）
- 
  ```
+>objdump命令是Linux下的反汇编命令工具。常用命令如下：
+>* objdump -f lab1-ex0.exe:显示lab1-ex0.exe的文件头信息
+>* objdump -d lab1-ex0.exe:显示lab1-ex0.exe的需要执行指令的那些section
+>* objdump -D lab1-ex0.exe:显示lab1-ex0.exe的所有section，汇编代码很清楚，这个指令应该是最常用的
+>* objdump -h lab1-ex0.exe:显示lab1-ex0.exe的SectionHeader信息
+>* objdump -x lab1-ex0.exe:显示lab1-ex0.exe的全部Header信息
+>* objdump -s lab1-ex0.exe:显示lab1-ex0.exe的全部Header信息以及对应十六进制文件代码的对照。 
+>
+>nm命令显示关于指定 File 中符号的信息，文件可以是对象文件、可执行文件或对象文件库。如果文件没有包含符号信息，nm 命令报告该情况，但不把它解释为出错条件。nm 命令缺省情况下报告十进制符号表示法下的数字值。命令格式如右所示：nm -A a.exe。而中间的符号不同的话，表示的含义也不同：
+>* A Global absolute 符号。
+>* a Local absolute 符号。
+>* B Global bss 符号。
+>* b Local bss 符号。
+>* D Global data 符号。
+>* d Local data 符号。
+>* f 源文件名称符号。
+>* T Global text 符号。
+>* t Local text 符号。
+>* U 未定义符号。
+>
+>file命令用户查看文件类型信息，格式： file[OPTIONS...] [FILE...] 主要参数：
+>* --help 显示帮助信息
+>* -v,--version 输出版本信息并退出
+>* -b,--brief 不显示文件名字
+>* -f,--files-fromFILE 读取待测试的名称文件
+>* -F,--seperatorSTRING 使用字符串作为分隔符，不再使用“：”
+>* -i,--mime 显示文件的mime类型
+>* -L,--dereference 显示符号链接所指向文件信息
+>* -d,--debug 输出调试信息
  
  1. 通过调试[lab1_ex1](https://github.com/chyyuu/ucore_lab/blob/master/related_info/lab1/lab1-ex1.md)了解Linux应用的系统调用执行过程。(w2l1)
  
