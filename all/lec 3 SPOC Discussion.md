@@ -172,10 +172,10 @@ fchmod 参见chmod
 >* -i,--mime 显示文件的mime类型
 >* -L,--dereference 显示符号链接所指向文件信息
 >* -d,--debug 输出调试信息
+>
+>系统调用指运行在使用者空间的程序向操作系统内核请求需要更高权限运行的服务。系统调用提供了用户程序与操作系统之间的接口。大多数系统交互式操作需求在内核态执行。如设备IO操作或者进程间通信。在这里，movl $SYS_write,%eax movl $STDOUT,%ebx movl $hello,%ecx movl $12,%edx int $0x80，其中涉及的系统调用时write写操作，首先程序将eax，ebx，ecx，edx四个寄存器存储上对应的参数，随后代码int $0x80启动了系统调用，程序运行时命令行输出hello world。
  
  1. 通过调试[lab1_ex1](https://github.com/chyyuu/ucore_lab/blob/master/related_info/lab1/lab1-ex1.md)了解Linux应用的系统调用执行过程。(w2l1)
- 
-
  ```
   + 采分点：说明了strace的大致用途，说明了系统调用的具体执行过程（包括应用，CPU硬件，操作系统的执行过程）
   - 答案没有涉及上述两个要点；（0分）
@@ -183,6 +183,7 @@ fchmod 参见chmod
   - 答案对上述两个要点进行了正确阐述（2分）
   - 答案除了对上述两个要点都进行了正确阐述外，还进行了扩展和更丰富的说明（3分）
  ```
+>strace常用来跟踪进程执行时的系统调用和所接收的信号,strace可以跟踪到一个进程产生的系统调用,包括参数，返回值，执行消耗的时间。
  
 ## 3.5 ucore系统调用分析
  1. ucore的系统调用中参数传递代码分析。
