@@ -19,7 +19,7 @@ NOTICE
   - 除第二点外，进一步描述了对8259中断控制器的初始过程（2分）
   - 除上述两点外，进一步描述了对8253时钟外设的初始化，或描述了对EFLAG操作使能中断（3分）
  ```
->ucore OS首先对IDT进行初始化，包括对中断描述符表进行相应的初始化，注意要设置好描述符表中对应于时钟中断的项。然后是配置好8259中断控制器，进一步再对8253时钟外设进行初始化
+>ucore OS首先对IDT进行初始化，包括对中断描述符表进行相应的初始化，注意要设置好描述符表中对应于时钟中断的项。然后是配置好8259中断控制器，进一步再对8253时钟外设进行初始化，外部时钟就可正常工作了。
 
 lab1中完成了对哪些外设的访问？ (w2l2)
  ```
@@ -48,7 +48,29 @@ lab1中的cprintf函数最终通过哪些外设完成了对字符串的输出？
 ---
 
 lab1中printfmt函数用到了可变参，请参考写一个小的linux应用程序，完成实现定义和调用一个可变参数的函数。(spoc)
-- [x]  
+>
+#include "stdio.h"
+#include "stdarg.h"
+void simple_va_fun(int start, ...)
+{
+    va_list arg_ptr;
+    int nArgValue =start;
+    int nArgCout=0;     //可变参数的数目
+    va_start(arg_ptr,start); //以固定参数的地址为起点确定变参的内存起始地址。
+    do
+    {
+        ++nArgCout;
+        printf("the %d th arg: %d\n",nArgCout,nArgValue);     //输出各参数的值
+        nArgValue = va_arg(arg_ptr,int);                      //得到下一个可变参数的值
+    } while(nArgValue != -1);               
+    return;
+}
+int main(int argc, char* argv[])
+{
+    simple_va_fun(100,-1);
+    simple_va_fun(100,200,-1);
+       return 0;
+}
 
 
 
