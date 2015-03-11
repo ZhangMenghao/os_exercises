@@ -48,29 +48,29 @@ lab1中的cprintf函数最终通过哪些外设完成了对字符串的输出？
 ---
 
 lab1中printfmt函数用到了可变参，请参考写一个小的linux应用程序，完成实现定义和调用一个可变参数的函数。(spoc)
->/#include "stdio.h"
->/#include "stdarg.h"
->void simple_va_fun(int start, ...)
->{
->    va_list arg_ptr;
->    int nArgValue =start;
->    int nArgCout=0;     //可变参数的数目
->    va_start(arg_ptr,start); //以固定参数的地址为起点确定变参的内存起始地址。
->    do
->    {
->        ++nArgCout;
->        printf("the %d th arg: %d\n",nArgCout,nArgValue);     //输出各参数的值
->        nArgValue = va_arg(arg_ptr,int);                      //得到下一个可变参数的值
->    } while(nArgValue != -1);               
->    return;
->}
->int main(int argc, char* argv[])
->{
->    simple_va_fun(100,-1);
->    simple_va_fun(100,200,-1);
->       return 0;
->}
-
+>\#include "stdio.h"  
+>\#include "stdarg.h"  
+>void simple_va_fun(int start, ...)  
+>{  
+>    va_list arg_ptr;  
+>    int nArgValue =start;  
+>    int nArgCout=0;     //可变参数的数目  
+>    va_start(arg_ptr,start); //以固定参数的地址为起点确定变参的内存起始地址。  
+>    do  
+>    {  
+>        ++nArgCout;  
+>        printf("the %d th arg: %d\n",nArgCout,nArgValue);     //输出各参数的值  
+>        nArgValue = va_arg(arg_ptr,int);                      //得到下一个可变参数的值  
+>    } while(nArgValue != -1);                 
+>    return;  
+>}  
+>int main(int argc, char* argv[])  
+>{  
+>    simple_va_fun(100,-1);  
+>    simple_va_fun(100,200,-1);  
+>       return 0;  
+>}  
+ 
 
 
 如果让你来一个阶段一个阶段地从零开始完整实现lab1（不是现在的填空考方式），你的实现步骤是什么？（比如先实现一个可显示字符串的bootloader（描述一下要实现的关键步骤和需要注意的事项），再实现一个可加载ELF格式文件的bootloader（再描述一下进一步要实现的关键步骤和需要注意的事项）...） (spoc)
