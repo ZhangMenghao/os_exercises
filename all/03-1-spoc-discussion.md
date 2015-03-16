@@ -45,8 +45,8 @@ MMU的工作机理？
 >  http://en.wikipedia.org/wiki/Memory_management_unit
 
 L1和L2高速缓存有什么区别？
-
-- [x]  
+>L1 Cache(一级缓存)是CPU第一层高速缓存。位于CPU内核的旁边，是与CPU结合最为紧密的CPU缓存。内置的L1高速缓存的容量和结构对CPU的性能影响较大，不过高速缓冲存储器均由静态RAM组成，结构较复杂，在CPU管芯面积不能太大的情况下，L1级高速缓存的容量不可能做得太大。一般L1缓存的容量通常在32—256KB。L2 Cache(二级缓存)是CPU的第二层高速缓存，它是处理器内部的一些缓冲存储器，其作用跟内存一样。分内部和外部两种芯片。内部的芯片二级缓存运行速度与主频相同，而外部的二级缓存则只有主频的一半。
+L2高速缓存容量也会影响CPU的性能，原则是越大越好,普通台式机CPU的L2缓存一般为128KB到2MB或者更高，笔记本、服务器和工作站上用CPU的L2高速缓存最高可达1MB-3MB。
 
 >  http://superuser.com/questions/196143/where-exactly-l1-l2-and-l3-caches-located-in-computer
 >  Where exactly L1, L2 and L3 Caches located in computer?
