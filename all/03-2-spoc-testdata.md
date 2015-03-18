@@ -135,16 +135,46 @@ page 7f: 11 03 11 00 1b 0a 0b 11 13 12 0f 13 1a 0d 0f 19 00 04 0a 06 1b 04 03 09
 
 请回答下列虚地址是否有合法对应的物理内存，请给出对应的pde index, pde contents, pte index, pte contents。
 ```
-Virtual Address 6c74
-Virtual Address 6b22
-Virtual Address 03df
-Virtual Address 69dc
-Virtual Address 317a
-Virtual Address 4546
-Virtual Address 2c03
-Virtual Address 7fd7
-Virtual Address 390e
-Virtual Address 748b
+Virtual Address 6c74:
+ --> pde index:0x1b  pde contents:(valid 1, pfn 0x20)
+  --> pte index:0x3  pte contents:(valid 1, pfn 0x61)
+   --> Translates to Physical Address 0x6114 --> Value:6
+Virtual Address 6b22:
+ --> pde index:0x1a  pde contents:(valid 1, pfn 0x52)
+  --> pte index:0x19  pte contents:(valid 1, pfn 0x47)
+   --> Translates to Physical Address 0x4702 --> Value:1a
+Virtual Address 3df:
+ --> pde index:0x0  pde contents:(valid 1, pfn 0x5a)
+  --> pte index:0x1e  pte contents:(valid 1, pfn 0x5)
+   --> Translates to Physical Address 0x51f --> Value:f
+Virtual Address 69dc:
+ --> pde index:0x1a  pde contents:(valid 1, pfn 0x52)
+  --> pte index:0xe  pte contents:(valid 0, pfn 0x7f)
+   Fault (page directory entry not valid)
+Virtual Address 317a:
+ --> pde index:0xc  pde contents:(valid 1, pfn 0x18)
+  --> pte index:0xb  pte contents:(valid 1, pfn 0x35)
+   --> Translates to Physical Address 0x351a --> Value:1e
+Virtual Address 4546:
+ --> pde index:0x11  pde contents:(valid 1, pfn 0x21)
+  --> pte index:0xa  pte contents:(valid 0, pfn 0x7f)
+   Fault (page directory entry not valid)
+Virtual Address 2c03:
+ --> pde index:0xb  pde contents:(valid 1, pfn 0x44)
+  --> pte index:0x0  pte contents:(valid 1, pfn 0x57)
+   --> Translates to Physical Address 0x5703 --> Value:16
+Virtual Address 7fd7:
+ --> pde index:0x1f  pde contents:(valid 1, pfn 0x12)
+  --> pte index:0x1e  pte contents:(valid 0, pfn 0x7f)
+   Fault (page directory entry not valid)
+Virtual Address 390e:
+ --> pde index:0xe  pde contents:(valid 0, pfn 0x7f)
+  Fault (page directory entry not valid)
+Virtual Address 748b:
+ --> pde index:0x1d  pde contents:(valid 1, pfn 0x0)
+  --> pte index:0x4  pte contents:(valid 0, pfn 0x7f)
+   Fault (page directory entry not valid)
+
 ```
 
 比如答案可以如下表示：
@@ -161,5 +191,5 @@ Virtual Address 21e1:
 Virtual Address 7268:
   --> pde index:0x1c  pde contents:(valid 1, pfn 0x5e)
     --> pte index:0x13  pte contents:(valid 1, pfn 0x65)
-      --> Translates to Physical Address 0xca8 --> Value: 16
+      --> Translates to Physical Address 0xca8 --> Value: 1a
 ```
