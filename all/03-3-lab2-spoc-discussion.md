@@ -102,7 +102,7 @@ va 0xcd82c07c, pa 0x0c20907c, pde_idx 0x00000336, pde_ctx  0x00037003, pte_idx 0
 
 - [x]  
 
-> 代码见vaandpa.cpp
+> 代码见[vaandpa.cpp](https://github.com/ZhangMenghao/os_exercises/blob/master/all/vaandpa.cpp)
 ```
 va 0xc2265b1f,pa 0xd8f1b1f,pde_idx 0x308,pde_ctx 0x9003,pte_idx 0x265,pte_ctx 0xd8f3
 va 0xcc386bbc,pa 0x414cbbc,pde_idx 0x330,pde_ctx 0x31003,pte_idx 0x386,pte_ctx 0x414f
