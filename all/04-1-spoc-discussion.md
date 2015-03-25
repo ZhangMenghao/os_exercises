@@ -94,6 +94,26 @@ Virtual Address 6890:
 Virtual Address 0af6:
 Virtual Address 1e6f:
 ```
+```
+Virtual Address 6653:
+ --> pde index:0x19  pde contents:(valid 0, pfn 0x7f)
+  Fault (page directory entry not valid)
+Virtual Address 1c13:
+ --> pde index:0x7  pde contents:(valid 1, pfn 0x3d)
+  --> pte index:0x0  pte contents:(valid 1, pfn 0x76)
+   --> Translates to Physical Address 0xed3 --> Value:12
+Virtual Address 6890:
+ --> pde index:0x1a  pde contents:(valid 0, pfn 0x7f)
+  Fault (page directory entry not valid)
+Virtual Address af6:
+ --> pde index:0x2  pde contents:(valid 1, pfn 0x21)
+  --> pte index:0x17  pte contents:(valid 0, pfn 0x7f)
+  --> To Disk Sector Address 0xff6 --> Value: 3
+Virtual Address 1e6f:
+ --> pde index:0x7  pde contents:(valid 1, pfn 0x3d)
+  --> pte index:0x13  pte contents:(valid 0, pfn 0x16)
+  --> To Disk Sector Address 0x2cf --> Value: 1c
+  ```
 
 **提示:**
 ```
