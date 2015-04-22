@@ -188,7 +188,6 @@ Final statistics:
 ```
 ```
 #! /usr/bin/env python
-
 import sys
 from optparse import OptionParser
 import random
@@ -237,8 +236,13 @@ if options.policy == 'MLFQ':
 if options.jlist == '': 
     for jobnum in range(0,options.jobs):
         runtime = int(options.maxlen * random.random()) + 1
-        joblist.append([jobnum, runtime])
-        print '  Job', jobnum, '( length = ' + str(runtime) + ' )'
+        if options.policy == 'STRIDE':
+            runtime = options.maxlen
+        prio = int(3 * random.random()) + 1
+        stride = 0
+        passnum = 6/prio
+        joblist.append([jobnum, runtime, prio,stride,passnum])
+        print '  Job', jobnum, '( length = ' + str(runtime) + ' prior = '+str(prio)+' stride = '+str(stride)+' passnum = '+str(passnum)+')'
 else:
     jobnum = 0
     for runtime in options.jlist.split(','):
@@ -436,7 +440,73 @@ if options.solve == True:
             
             print '\n  Average -- Response: %3.2f  Turnaround %3.2f  Wait %3.2f\n' % (responseSum/count, turnaroundSum/count, waitSum/count)
 
-    if options.policy != 'FIFO' and options.policy != 'SJF' and options.policy != 'RR' and options.policy != 'MLFQ': 
+    if options.policy == 'STRIDE':
+        print 'Execution trace:'
+        
+        
+        turnaround = {}
+        response = {}
+        lastran = {}
+        wait = {}
+        quantum  = float(options.quantum)
+        jobcount = len(joblist)
+        for i in range(0,jobcount):
+            lastran[i] = 0.0
+            wait[i] = 0.0
+            turnaround[i] = 0.0
+            response[i] = -1
+
+        runlist = []
+        for e in joblist:
+            runlist.append(e)
+
+        thetime  = 0.0
+        while jobcount > 0:
+            # print '%d jobs remaining' % jobcount
+            runlist.sort(key=lambda x:x[3])
+            job = runlist.pop(0)
+            jobnum  = job[0]
+            runtime = float(job[1])
+            prio= job[2]
+            stride = job[3]
+            passnum = job[4]
+            if response[jobnum] == -1:
+                response[jobnum] = thetime
+            currwait = thetime - lastran[jobnum]
+            wait[jobnum] += currwait
+            ranfor = 0
+            if runtime > quantum:
+                #YOUR CODE
+                runtime = runtime - quantum
+                ranfor = quantum
+                stride = stride + passnum
+                print '  [ time %3d ] Run job %3d for %.2f secs' % (thetime, jobnum, ranfor)
+                runlist.append([jobnum, runtime,prio,stride,passnum])
+            else:
+                #YOUR CODE
+                ranfor = quantum
+                print '  [ time %3d ] Run job %3d for %.2f secs ( DONE at %.2f )' % (thetime, jobnum, ranfor, thetime + ranfor)
+                turnaround[jobnum] = thetime + ranfor
+                jobcount -= 1
+            thetime += ranfor
+            lastran[jobnum] = thetime
+        
+        
+        print '\nFinal statistics:'
+        turnaroundSum = 0.0
+        waitSum       = 0.0
+        responseSum   = 0.0
+        for i in range(0,len(joblist)):
+            turnaroundSum += turnaround[i]
+            responseSum += response[i]
+            waitSum += wait[i]
+            print '  Job %3d -- Response: %3.2f  Turnaround %3.2f  Wait %3.2f' % (i, response[i], turnaround[i], wait[i])
+        count = len(joblist)
+        
+        print '\n  Average -- Response: %3.2f  Turnaround %3.2f  Wait %3.2f\n' % (responseSum/count, turnaroundSum/count, waitSum/count)
+        
+
+    if options.policy != 'FIFO' and options.policy != 'SJF' and options.policy != 'RR' and options.policy != 'MLFQ' and options.policy != 'STRIDE': 
         print 'Error: Policy', options.policy, 'is not available.'
         sys.exit(0)
 else:
