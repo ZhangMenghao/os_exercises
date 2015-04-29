@@ -61,7 +61,36 @@
 3. （spoc） 了解software-based lock, hardware-based lock, [software-hardware-lock代码目录](https://github.com/chyyuu/ucore_lab/tree/master/related_info/lab7/software-hardware-locks)
 
   - 理解flag.s,peterson.s,test-and-set.s,ticket.s,test-and-test-and-set.s 请通过x86.py分析这些代码是否实现了锁机制？请给出你的实验过程和结论说明。能否设计新的硬件原子操作指令Compare-And-Swap,Fetch-And-Add？
+```
+flag.s没有实现锁机制，多个线程可以同时进入临界区
+------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+1006 mov  %ax, count
+------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+                         1003 mov  $1, flag
+                         1004 mov  count, %ax
+------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+                                                  1004 mov  count, %ax
+                                                  1005 add  $1, %ax
 
+peterson.s也没有实现锁机制，多个线程也可以同时进入临界区
+------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+                         1008 jne .fini
+                         1012 mov count, %ax
+                         1013 add $1, %ax
+------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+                                                  1013 add $1, %ax
+                                                  1014 mov %ax, count
+                                                  1015 mov $0, 0(%fx,%bx,4)
+------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+1012 mov count, %ax
+1013 add $1, %ax
+1014 mov %ax, count
+
+test-and-set.s实现了锁机制，因为不管在任何位置切换线程都能保证有且只有一个线程进入临界区。
+ticket.s也实现了锁机制，因为不管在任何位置切换线程都能保证有且只有一个线程进入临界区。
+test-and-test-and-set.s也实现了锁机制，因为不管在任何位置切换线程都能保证有且只有一个线程进入临界区。
+上述都是实验过程证明的结果。
+```
 ```
 Compare-And-Swap
 
