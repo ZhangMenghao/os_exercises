@@ -349,7 +349,6 @@ class fs:
         # no data blocks left
         # write file data
     # DONE
-        print 'aaaaaaaaaaaaaaaaaaaaaa',data,tfile,inum,curSize
         if curSize== 0:
             iaddr = self.dataAlloc()
             if iaddr == -1:
@@ -358,7 +357,6 @@ class fs:
             self.inodes[inum].setAddr(iaddr)
             self.data[iaddr].setType('f')
         else:
-            print 'aaaaaa'
             iaddr = self.inodes[inum].getAddr()
         self.data[iaddr].addData(data)
         if printOps:
