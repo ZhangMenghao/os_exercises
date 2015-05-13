@@ -47,7 +47,7 @@
 ## 小组思考题
  1. (spoc)完成Simple File System的功能，支持应用程序的一般文件操作。具体帮助和要求信息请看[sfs-homework](https://github.com/chyyuu/ucore_lab/blob/master/related_info/lab8/sfs-homework.md)
 
-> 见代码[sfs-homework.py]()
+> 见代码[sfs-homework.py](https://github.com/ZhangMenghao/os_exercises/blob/master/all/sfs-homework.py)
  1. (spoc)FAT、UFS、YAFFS、NTFS这几种文件系统中选一种，分析它的文件卷结构、目录结构、文件分配方式，以及它的变种。
   wikipedia上的文件系统列表参考
   - http://en.wikipedia.org/wiki/List_of_file_systems
