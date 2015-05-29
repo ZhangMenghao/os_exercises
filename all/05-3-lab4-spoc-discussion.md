@@ -111,7 +111,6 @@ pid = 3, name = init3, status switch from runnable to zombie and resource had be
     cprintf(" kernel_thread, pid = %d, name = %s , running step 2 \n", current->pid, get_proc_name(current));
     schedule();
     cprintf(" kernel_thread, pid = %d, name = %s ,  en.., Bye, Bye. :)\n",current->pid, get_proc_name(current));
-
     return 0;
 ```
 其中do_sleep()函数表示让当前线程休眠一定数量的时钟中断。即练习四的内容。  
