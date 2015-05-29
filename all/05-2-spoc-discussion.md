@@ -124,4 +124,4 @@ Time     PID: 0     PID: 1        CPU        IOs
  13     RUN:yld       DONE          1            
 ```
 
->具体见代码[05-2-spoc-discussion.md](https://github.com/ZhangMenghao/os_exercises/edit/master/all/05-2-spoc-discussion.md)
+>具体见代码[05-2-spoc-discussion.md](https://github.com/ZhangMenghao/os_exercises/edit/master/all/05-2-spoc-discussion.py)
